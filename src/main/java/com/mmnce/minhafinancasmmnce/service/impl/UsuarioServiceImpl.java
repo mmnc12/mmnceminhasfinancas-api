@@ -2,7 +2,6 @@ package com.mmnce.minhafinancasmmnce.service.impl;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mmnce.minhafinancasmmnce.exception.ErroAutenticacao;
@@ -16,9 +15,10 @@ import jakarta.transaction.Transactional;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
-	@Autowired
+	//@Autowired
 	private UsuarioRepository repository;
 
+	
 	public UsuarioServiceImpl(UsuarioRepository repository) {
 		this.repository = repository;
 	}
@@ -53,5 +53,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new RegraNegocioException("Já existe um usuário cadastro com este email.");
 		}
 	}
+
+	@Override
+	public Optional<Usuario> obterPorId(Long id) {
+		return repository.findById(id);
+	}
+
+	
 
 }
