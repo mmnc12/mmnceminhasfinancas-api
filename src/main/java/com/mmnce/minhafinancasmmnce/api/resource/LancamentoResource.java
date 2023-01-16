@@ -36,18 +36,16 @@ public class LancamentoResource {
 	private final UsuarioService usuarioService;
 
 	@GetMapping
-	public ResponseEntity buscar(
-			@RequestParam(value = "descricao", required = false) String descricao,
+	public ResponseEntity buscar(@RequestParam(value = "descricao", required = false) String descricao,
 			@RequestParam(value = "mes", required = false) Integer mes,
 			@RequestParam(value = "ano", required = false) Integer ano,
-			@RequestParam(value = "usuario", required = false) Long idUsuario
-	// @RequestParam(value = "tipo", required = false) String tipo
-	) {
+			@RequestParam(value = "usuario", required = false) Long idUsuario,
+			@RequestParam(value = "tipo", required = false) String tipo) {
 		Lancamento lancamentoFiltro = new Lancamento();
 		lancamentoFiltro.setDescricao(descricao);
 		lancamentoFiltro.setMes(mes);
-			lancamentoFiltro.setAno(ano);
-		// lancamentoFiltro.setTipo(TipoLancamento.valueOf(tipo));
+		lancamentoFiltro.setAno(ano);
+		lancamentoFiltro.setTipo(TipoLancamento.valueOf(tipo));
 
 		Optional<Usuario> usuario = usuarioService.obterPorId(idUsuario);
 
